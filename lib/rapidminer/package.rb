@@ -39,10 +39,10 @@ module RapidMiner
           Zip::ZipFile.open(file_path) do |zip|
 
               image = StringIO.new(zip.read("preview.png"))
-              image.original_filename = 'preview.png'
+              #image.original_filename = 'preview.png'
 
               svg = StringIO.new(zip.read("preview.svg"))
-              svg.original_filename = 'preview.svg'
+              #svg.original_filename = 'preview.svg'
 
               process = LibXML::XML.string(zip.read("process.xml")).parse
 
