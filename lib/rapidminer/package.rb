@@ -33,8 +33,6 @@ module RapidMiner
       # The root process of the workflow.
       attr_accessor :process
     
-    end
-    
      def self.parse(file_path)
           package = RapidMiner::Package.new
 
@@ -109,4 +107,5 @@ module RapidMiner
         
         all_operators_aux(process, [])
       end
+  end
 end
