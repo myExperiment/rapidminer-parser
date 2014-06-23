@@ -2,15 +2,14 @@
 
 require "xml/libxml"
 require "zip/zip"
-require "rapidminer/parser/input"
-require "rapidminer/parser/output"
-#require "rapidminer/parser/processor"
-#require "rapidminer/parser/operator"
+require "rapidminer/input"
+require "rapidminer/output"
+#require "rapidminer/processor"
+#require "rapidminer/operator"
 
 # This is the concept of the RapidMiner package that myExperiment deals with
 
 module RapidMiner
-  module Parser
     class Package 
     
       # Title of the workflow.
@@ -37,7 +36,7 @@ module RapidMiner
     end
     
      def self.parse(file_path)
-          package = RapidMiner::Parser::Package.new
+          package = RapidMiner::Package.new
 
           Zip::ZipFile.open(file_path) do |zip|
 
@@ -47,26 +46,26 @@ module RapidMiner
               svg = StringIO.new(zip.read("preview.svg"))
               svg.original_filename = 'preview.svg'
 
-              process = LibXML::XML::Parser.string(zip.read("process.xml")).parse
+              process = LibXML::XML.string(zip.read("process.xml")).parse
 
               package.title       = "Temporary title"
               package.description = CGI.unescapeHTML(process.find("/process/operator/description/text()")[0].to_s)
               package.image       = image
               package.svg         = svg
-              package.process     = RapidMiner::Parser::Process.parse(process.find("/process")[0])
+              package.process     = RapidMiner::Process.parse(process.find("/process")[0])
               package.inputs      = []
               package.outputs     = []
 
               # Parse the context of the workflow.
 
               process.find("/process/context/input/location").each do |element|
-                input = RapidMiner::Parser::Input.new
+                input = RapidMiner::Input.new
                 input.location = element.find("text()")[0].to_s
                 package.inputs.push(input)
               end
 
               process.find("/process/context/output/location").each do |element|
-                output = RapidMiner::Parser::Output.new
+                output = RapidMiner::Output.new
                 output.location = element.find("text()")[0].to_s
                 package.outputs.push(output)
               end
@@ -110,5 +109,4 @@ module RapidMiner
         
         all_operators_aux(process, [])
       end
-  end   
 end

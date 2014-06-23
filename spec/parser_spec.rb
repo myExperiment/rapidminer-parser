@@ -1,4 +1,4 @@
-include RapidMiner
+require 'rapidminer/parser'
 
 describe "parser" do
   it "parses x-validation workflow" do

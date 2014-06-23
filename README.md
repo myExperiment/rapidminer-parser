@@ -1,6 +1,6 @@
-# Rapidminer::Parser
+# Rapidminer parser
 
-TODO: Write a gem description
+Parse RapidMiner workflows.
 
 ## Installation
 
@@ -18,7 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    include 'rapidminer/parser
+    wf = RapidMiner::Parser.parse_file("spec/x-validation_with_one-class_svm_636319.zip")
+
 
 ## Contributing
 

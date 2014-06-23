@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rapidminer/parser/version'
+require 'rapidminer/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rapidminer-parser"
-  spec.version       = RapidMiner::Parser::VERSION
+  spec.version       = RapidMiner::VERSION
   spec.authors       = ["Don Cruickshank", "Stian Soiland-Reyes"]
   spec.email         = ["support@mygrid.org.uk"]
   spec.summary       = %q{RapidMiner workflow parser}

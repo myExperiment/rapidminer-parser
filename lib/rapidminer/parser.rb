@@ -1,7 +1,7 @@
 # Copyright (c) 2010-2014 University of Manchester and the University of Southampton
 
-require "rapidminer/parser/version"
-require "rapidminer/parser/package"
+require "rapidminer/version"
+require "rapidminer/package"
 
 module Rapidminer
     class Parser
@@ -17,7 +17,7 @@ module Rapidminer
 	  end
       end
       def self.parse_file(file)
-	      RapidMiner::Parser::Package.parse(file)
+	      RapidMiner::Package.parse(file)
       end
   end
 end

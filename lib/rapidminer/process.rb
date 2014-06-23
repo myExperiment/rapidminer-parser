@@ -4,7 +4,6 @@ require "xml/libxml"
 require "operator"
 
 module RapidMiner
-  module Parser
     # A RapidMiner process.
 
     class Process
@@ -14,11 +13,11 @@ module RapidMiner
 
       def self.parse(element)
 
-        process = RapidMiner::Parser::Process.new
+        process = RapidMiner::Process.new
         process.operators = []
 
         element.find('operator').each do |operator|
-          process.operators.push(RapidMiner::Parser::Operator.parse(operator))
+          process.operators.push(RapidMiner::Operator.parse(operator))
         end
 
         process
@@ -35,5 +34,4 @@ module RapidMiner
       end
 
     end
-  end
 end

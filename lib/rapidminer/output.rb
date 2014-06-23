@@ -3,7 +3,6 @@
 require "xml/libxml"
 
 module RapidMiner
-  module Parser
     class Input
     
       # The location of the input.
@@ -15,5 +14,4 @@ module RapidMiner
         element
       end
     end
-  end
 end
