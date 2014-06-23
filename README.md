@@ -2,6 +2,8 @@
 
 Parse RapidMiner workflows.
 
+[![Build Status](https://travis-ci.org/myExperiment/rapidminer-parser.svg?branch=master)](https://travis-ci.org/myExperiment/rapidminer-parser)
+
 ## Installation
 
 Add this line to your application's Gemfile:
