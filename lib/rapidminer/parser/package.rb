@@ -9,7 +9,8 @@ require "rapidminer/parser/output"
 
 # This is the concept of the RapidMiner package that myExperiment deals with
 
-module RapidMiner::Parser
+module RapidMiner
+  module Parser
     class Package 
     
       # Title of the workflow.
@@ -109,4 +110,5 @@ module RapidMiner::Parser
         
         all_operators_aux(process, [])
       end
+  end   
 end

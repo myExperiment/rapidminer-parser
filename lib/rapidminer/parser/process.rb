@@ -3,7 +3,8 @@
 require "xml/libxml"
 require "operator"
 
-module RapidMiner::Parser
+module RapidMiner
+  module Parser
     # A RapidMiner process.
 
     class Process
@@ -34,4 +35,5 @@ module RapidMiner::Parser
       end
 
     end
+  end
 end

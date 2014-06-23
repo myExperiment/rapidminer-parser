@@ -2,7 +2,8 @@
 
 require "xml/libxml"
 
-class RapidMiner::Parser
+module RapidMiner
+  module Parser
     # A RapidMiner operator.
 
     class Operator
@@ -40,4 +41,5 @@ class RapidMiner::Parser
       end
 
     end
+  end
 end
