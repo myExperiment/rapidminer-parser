@@ -5,7 +5,7 @@ require 'rapidminer/parser/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rapidminer-parser"
-  spec.version       = Rapidminer::Parser::VERSION
+  spec.version       = RapidMiner::Parser::VERSION
   spec.authors       = ["Don Cruickshank", "Stian Soiland-Reyes"]
   spec.email         = ["support@mygrid.org.uk"]
   spec.summary       = %q{RapidMiner workflow parser}
