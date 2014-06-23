@@ -3,7 +3,7 @@
 require "rapidminer/version"
 require "rapidminer/package"
 
-module Rapidminer
+module RapidMiner
     class Parser
       def self.parse_stream(stream)
           Tempfile.open("rapid_miner", "tmp") do |zip_file|
