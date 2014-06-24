@@ -3,8 +3,8 @@
 require "rapidminer/version"
 require "rapidminer/package"
 require "zip/filesystem"
-require "stringio"
 require "tempfile"
+require "fileutils"
 
 module RapidMiner
   class Parser
@@ -32,7 +32,7 @@ module RapidMiner
         # zip/filesystem does not seem to support
         # reading from a buffer :(
         Tempfile.open("rapid_miner") do |file|
-          file.write(filename_or_buffer.read())
+          FileUtils.copy_stream(filename_or_buffer, file)
           file.close
           return file.path
         end
