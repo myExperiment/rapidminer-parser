@@ -3,41 +3,41 @@
 require "xml/libxml"
 
 module RapidMiner
-    # A RapidMiner operator.
+  # A RapidMiner operator.
 
-    class Operator
+  class Operator
 
-      # The name of this operator.
-      attr_accessor :name
+    # The name of this operator.
+    attr_accessor :name
 
-      # Sub processes of this operator.
-      attr_accessor :processes
+    # Sub processes of this operator.
+    attr_accessor :processes
 
-      def self.parse(element)
-        operator = RapidMiner::Operator.new
-        operator.processes = []
+    def self.parse(element)
+      operator = RapidMiner::Operator.new
+      operator.processes = []
 
-        name = element.find("@name")
+      name = element.find("@name")
 
-        operator.name = name[0].value if name.length > 0
+      operator.name = name[0].value if name.length > 0
 
-        element.find('process').each do |process|
-          operator.processes.push(RapidMiner::Process.parse(process))
-        end
-
-        operator
-      end
-     
-      def get_components
-        element = XML::Node.new("operator")
-        element["name"] = name
-
-        processes.each do |process|
-          element << process.get_components
-        end
-
-        element
+      element.find('process').each do |process|
+        operator.processes.push(RapidMiner::Process.parse(process))
       end
 
+      operator
     end
+   
+    def get_components
+      element = XML::Node.new("operator")
+      element["name"] = name
+
+      processes.each do |process|
+        element << process.get_components
+      end
+
+      element
+    end
+
+  end
 end

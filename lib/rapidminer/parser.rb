@@ -4,20 +4,20 @@ require "rapidminer/version"
 require "rapidminer/package"
 
 module RapidMiner
-    class Parser
-      def self.parse_stream(stream)
-          Tempfile.open("rapid_miner", "tmp") do |zip_file|
-            begin
-              zip_file.write(stream)
-              zip_file.close
-	      parse_file(zip_file.path)
-	    ensure 
-	      zip_file.unlink()
-	    end
-	  end
+  class Parser
+    def self.parse_stream(stream)
+      Tempfile.open("rapid_miner", "tmp") do |zip_file|
+        begin
+          zip_file.write(stream)
+          zip_file.close
+          parse_file(zip_file.path)
+        ensure 
+          zip_file.unlink()
+        end
       end
-      def self.parse_file(file)
-	      RapidMiner::Package.parse(file)
-      end
+    end
+    def self.parse_file(file)
+      RapidMiner::Package.parse(file)
+    end
   end
 end

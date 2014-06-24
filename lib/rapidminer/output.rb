@@ -3,15 +3,15 @@
 require "xml/libxml"
 
 module RapidMiner
-    class Input
-    
-      # The location of the input.
-      attr_accessor :location
+  class Input
+  
+    # The location of the input.
+    attr_accessor :location
 
-      def get_components
-        element = XML::Node.new("input")
-        element["location"] = location
-        element
-      end
+    def get_components
+      element = XML::Node.new("input")
+      element["location"] = location
+      element
     end
+  end
 end
