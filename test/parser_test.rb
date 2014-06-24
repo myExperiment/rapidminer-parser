@@ -1,7 +1,7 @@
-require "test/unit"
 require "rapidminer/parser"
+require "minitest/autorun"
 
-class ParserTest < Test::Unit::TestCase
+class ParserTest < MiniTest::Test
   def test_parse_file
     package = RapidMiner::Parser.parse_file("test/x-validation_with_one-class_svm_636319.zip")
     assert_equal("X-Validation with One-Class SVM", package.title)
@@ -13,6 +13,7 @@ class ParserTest < Test::Unit::TestCase
     assert_equal("10fold X-Validation", process.operators[1].name)
     assert_equal("Only Rock examples", process.operators[1].processes[0].operators[0].name)
   end
+
   def test_get_components
     package = RapidMiner::Parser.parse_file("test/x-validation_with_one-class_svm_636319.zip")
     doc = LibXML::XML::Document.new
@@ -26,5 +27,12 @@ class ParserTest < Test::Unit::TestCase
                  doc.find("/components/process/operator/process/operator[2]/@name").first.value)
     assert_equal("Only Rock examples", 
                  doc.find("/components/process/operator/process/operator[2]/process/operator[1]/@name").first.value)
+  end
+
+  def test_recognized
+    # checks if it is correct type with IO and StringIO
+    assert RapidMiner::Parser::recognized?(open("test/x-validation_with_one-class_svm_636319.zip"))
+    assert RapidMiner::Parser::recognized?(StringIO.new(open("test/x-validation_with_one-class_svm_636319.zip").read))
+    assert RapidMiner::Parser::recognized?("test/x-validation_with_one-class_svm_636319.zip")
   end
 end

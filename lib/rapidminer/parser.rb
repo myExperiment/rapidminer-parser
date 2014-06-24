@@ -2,6 +2,8 @@
 
 require "rapidminer/version"
 require "rapidminer/package"
+require "zip/filesystem"
+require "stringio"
 
 module RapidMiner
   class Parser
@@ -18,6 +20,19 @@ module RapidMiner
     end
     def self.parse_file(file)
       RapidMiner::Package.parse(file)
+    end
+
+    def self.recognized?(file_or_buffer)
+      buffer = ! file_or_buffer.is_a?(String)
+      zip = nil
+      begin 
+        zip = Zip::File.new(file_or_buffer, false, buffer) 
+        return !zip.find_entry("process.xml").nil?
+      rescue
+        return false
+      ensure
+        zip.close() if zip
+      end
     end
   end
 end
