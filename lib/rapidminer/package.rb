@@ -1,11 +1,11 @@
 # Copyright (c) 2010-2014 University of Manchester and the University of Southampton
 
 require "xml/libxml"
-require "zip/zip"
+require "zip/filesystem"
 require "rapidminer/input"
 require "rapidminer/output"
-#require "rapidminer/processor"
-#require "rapidminer/operator"
+require "rapidminer/process"
+require "rapidminer/operator"
 
 # This is the concept of the RapidMiner package that myExperiment deals with
 
@@ -36,7 +36,7 @@ module RapidMiner
      def self.parse(file_path)
           package = RapidMiner::Package.new
 
-          Zip::ZipFile.open(file_path) do |zip|
+          Zip::File.open(file_path) do |zip|
 
               image = StringIO.new(zip.read("preview.png"))
               #image.original_filename = 'preview.png'
@@ -44,7 +44,7 @@ module RapidMiner
               svg = StringIO.new(zip.read("preview.svg"))
               #svg.original_filename = 'preview.svg'
 
-              process = LibXML::XML.string(zip.read("process.xml")).parse
+              process = LibXML::XML::Parser.io(zip.get_input_stream("process.xml")).parse
 
               package.title       = "Temporary title"
               package.description = CGI.unescapeHTML(process.find("/process/operator/description/text()")[0].to_s)
