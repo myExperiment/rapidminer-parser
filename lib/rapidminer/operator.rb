@@ -14,7 +14,7 @@ module RapidMiner
       attr_accessor :processes
 
       def self.parse(element)
-        operator = RapidMinerLib::Operator.new
+        operator = RapidMiner::Operator.new
         operator.processes = []
 
         name = element.find("@name")
@@ -22,7 +22,7 @@ module RapidMiner
         operator.name = name[0].value if name.length > 0
 
         element.find('process').each do |process|
-          operator.processes.push(RapidMinerLib::Process.parse(process))
+          operator.processes.push(RapidMiner::Process.parse(process))
         end
 
         operator

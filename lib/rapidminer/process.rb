@@ -1,7 +1,7 @@
 # Copyright (c) 2010-2014 University of Manchester and the University of Southampton
 
 require "xml/libxml"
-require "operator"
+require "rapidminer/operator"
 
 module RapidMiner
     # A RapidMiner process.
