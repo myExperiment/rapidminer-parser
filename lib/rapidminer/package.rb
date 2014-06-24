@@ -34,7 +34,7 @@ module RapidMiner
     # The root process of the workflow.
     attr_accessor :process
   
-   def self.parse(file_path)
+    def self.parse(file_path)
       package = RapidMiner::Package.new
 
       Zip::File.open(file_path) do |zip|
