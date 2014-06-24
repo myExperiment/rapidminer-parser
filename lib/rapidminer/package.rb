@@ -47,7 +47,7 @@ module RapidMiner
 
         process = LibXML::XML::Parser.io(zip.get_input_stream("process.xml")).parse
 
-        package.title     = "Temporary title"
+        package.title = CGI.unescapeHTML(process.find("/process/title/text()")[0].to_s)
         package.description = CGI.unescapeHTML(process.find("/process/operator/description/text()")[0].to_s)
         package.image     = image
         package.svg     = svg
