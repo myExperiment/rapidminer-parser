@@ -31,8 +31,12 @@ class ParserTest < MiniTest::Test
 
   def test_recognized
     # checks if it is correct type with IO and StringIO
-    assert RapidMiner::Parser::recognized?(open("test/x-validation_with_one-class_svm_636319.zip"))
-    assert RapidMiner::Parser::recognized?(StringIO.new(open("test/x-validation_with_one-class_svm_636319.zip").read))
     assert RapidMiner::Parser::recognized?("test/x-validation_with_one-class_svm_636319.zip")
+    open("test/x-validation_with_one-class_svm_636319.zip") do |file|
+      assert RapidMiner::Parser::recognized?(file)
+    end
+    open("test/x-validation_with_one-class_svm_636319.zip") do |file|
+      assert RapidMiner::Parser::recognized?(StringIO.new(file.read()))
+    end
   end
 end
