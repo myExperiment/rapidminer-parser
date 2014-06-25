@@ -1,5 +1,6 @@
 require "rapidminer/parser"
 require "minitest/autorun"
+require "test_helper"
 
 class ParserTest < MiniTest::Test
   def test_parse_file

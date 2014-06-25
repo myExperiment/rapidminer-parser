@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require "rapidminer/workflowprocessor"
+require "test_helper"
 
 class WorkflowProcessorTest < MiniTest::Test
   def test_workflow_processor
