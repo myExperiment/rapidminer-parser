@@ -4,7 +4,7 @@ require "test_helper"
 
 class ParserTest < MiniTest::Test
   def test_parse_file
-    package = RapidMiner::Parser.parse_file("test/x-validation_with_one-class_svm_636319.zip")
+    package = RapidMiner::Parser.parse_file(X_VALIDATION)
     assert_equal("X-Validation with One-Class SVM", package.title)
     assert_equal([], package.inputs)
     assert_equal([], package.outputs)
@@ -16,7 +16,7 @@ class ParserTest < MiniTest::Test
   end
 
   def test_get_components
-    package = RapidMiner::Parser.parse_file("test/x-validation_with_one-class_svm_636319.zip")
+    package = RapidMiner::Parser.parse_file(X_VALIDATION)
     doc = LibXML::XML::Document.new
     doc.root = package.get_components
     #puts doc.root
@@ -32,11 +32,12 @@ class ParserTest < MiniTest::Test
 
   def test_recognized
     # checks if it is correct type with IO and StringIO
-    assert RapidMiner::Parser::recognized?("test/x-validation_with_one-class_svm_636319.zip")
-    open("test/x-validation_with_one-class_svm_636319.zip") do |file|
+    assert RapidMiner::Parser::recognized?(X_VALIDATION)
+    assert ! RapidMiner::Parser::recognized?(X_VALIDATION_TXT)
+    open(X_VALIDATION) do |file|
       assert RapidMiner::Parser::recognized?(file)
     end
-    open("test/x-validation_with_one-class_svm_636319.zip") do |file|
+    open(X_VALIDATION) do |file|
       assert RapidMiner::Parser::recognized?(StringIO.new(file.read()))
     end
   end
