@@ -44,8 +44,8 @@ module RapidMiner
       begin 
         zip = Zip::File.open(as_filename(file_or_buffer))
         return !zip.find_entry("process.xml").nil?
-#      rescue
-#        return false
+      rescue
+        return false
       ensure
         zip.close() if zip
       end
