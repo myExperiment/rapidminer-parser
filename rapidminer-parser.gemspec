@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rapidminer/version'
+require 'workflow_parser/rapidminer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rapidminer-parser"
-  spec.version       = RapidMiner::VERSION
+  spec.name          = "workflow_parser-rapidminer"
+  spec.version       = WorkflowParser::RapidMiner::VERSION
   spec.authors       = ["Don Cruickshank", "Stian Soiland-Reyes"]
   spec.email         = ["support@mygrid.org.uk"]
   spec.summary       = %q{RapidMiner workflow parser}
   spec.description   = %q{Parser for RapidMiner workflows, exposing title, description, inputs, outputs, etc.}
-  spec.homepage      = "https://github.com/myExperiment/rapidminer-parser"
+  spec.homepage      = "https://github.com/myExperiment/workflow_parser-rapidminer"
   spec.license       = "BSD-3-Clause"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "coveralls"
   spec.add_runtime_dependency "rubyzip", "~> 1.1.4"
   spec.add_runtime_dependency "libxml-ruby", '~> 2.7.0'
+  spec.add_runtime_dependency "workflow_parser", "~> 0.0"
 end
