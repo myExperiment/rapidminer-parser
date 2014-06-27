@@ -1,6 +1,6 @@
 # Copyright (c) 2010-2014 University of Manchester and the University of Southampton
 
-require "rapidminer/package"
+require "workflow_parser/rapidminer/package"
 
 module WorkflowProcessors
   # Place-holder
@@ -8,7 +8,8 @@ module WorkflowProcessors
   end
 end
 
-module RapidMiner 
+module WorkflowParser
+module RapidMiner
   class WorkflowProcessor < WorkflowProcessors::Interface
 
     # Begin Class Methods
@@ -41,7 +42,7 @@ module RapidMiner
 
     def self.recognised?(file)
       file.rewind
-      return RapidMiner::Parser.recognized?(file.path)
+      return WorkflowParser::RapidMiner::Parser.recognized?(file.path)
     rescue
       return false
     ensure
@@ -67,7 +68,7 @@ module RapidMiner
 
     def initialize(workflow_definition)
       super(workflow_definition)
-      @rapid_miner_model = RapidMiner::Package.parse(workflow_definition)
+      @rapid_miner_model = WorkflowParser::RapidMiner::Package.parse(workflow_definition)
     end
 
     # End Object Initializer
@@ -91,7 +92,7 @@ module RapidMiner
     def get_workflow_model_object
       return @rapid_miner_model
     end
-    
+
     def get_preview_image
       @rapid_miner_model.image
     end
@@ -114,4 +115,5 @@ module RapidMiner
 
     # End Instance Methods
   end
+end
 end

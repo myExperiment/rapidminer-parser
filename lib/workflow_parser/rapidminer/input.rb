@@ -2,18 +2,20 @@
 
 require "xml/libxml"
 
-module RapidMiner
+module WorkflowParser
+  module RapidMiner
 
-  # A RapidMiner input.
-  class Input
-  
-    # The location of the input.
-    attr_accessor :location
+    # A RapidMiner input.
+    class Input
 
-    def get_components
-      element = XML::Node.new("input")
-      element["location"] = location
-      element
+      # The location of the input.
+      attr_accessor :location
+
+      def get_components
+        element = XML::Node.new("input")
+        element["location"] = location
+        element
+      end
     end
   end
 end

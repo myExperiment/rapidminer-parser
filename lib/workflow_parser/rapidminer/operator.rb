@@ -2,6 +2,7 @@
 
 require "xml/libxml"
 
+module WorkflowParser
 module RapidMiner
   # A RapidMiner operator.
 
@@ -14,7 +15,7 @@ module RapidMiner
     attr_accessor :processes
 
     def self.parse(element)
-      operator = RapidMiner::Operator.new
+      operator = WorkflowParser::RapidMiner::Operator.new
       operator.processes = []
 
       name = element.find("@name")
@@ -22,12 +23,12 @@ module RapidMiner
       operator.name = name[0].value if name.length > 0
 
       element.find('process').each do |process|
-        operator.processes.push(RapidMiner::Process.parse(process))
+        operator.processes.push(WorkflowParser::RapidMiner::Process.parse(process))
       end
 
       operator
     end
-   
+
     def get_components
       element = XML::Node.new("operator")
       element["name"] = name
@@ -40,4 +41,5 @@ module RapidMiner
     end
 
   end
+end
 end

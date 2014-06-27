@@ -1,10 +1,10 @@
-require "rapidminer/parser"
+require "workflow_parser/rapidminer/parser"
 require "minitest/autorun"
 require "test_helper"
 
 class ParserTest < MiniTest::Test
   def test_parse_file
-    package = RapidMiner::Parser.parse_file(X_VALIDATION)
+    package = WorkflowParser::RapidMiner::Parser.parse_file(X_VALIDATION)
     assert_equal("X-Validation with One-Class SVM", package.title)
     assert_equal([], package.inputs)
     assert_equal([], package.outputs)
@@ -16,29 +16,29 @@ class ParserTest < MiniTest::Test
   end
 
   def test_get_components
-    package = RapidMiner::Parser.parse_file(X_VALIDATION)
+    package = WorkflowParser::RapidMiner::Parser.parse_file(X_VALIDATION)
     doc = LibXML::XML::Document.new
     doc.root = package.get_components
     #puts doc.root
     assert_equal("Process", doc.find("/components/process/operator/@name").first.value)
     # Remember xpath arrays are 1-based... :/
-    assert_equal("Retrieve Sonar", 
+    assert_equal("Retrieve Sonar",
                  doc.find("/components/process/operator/process/operator[1]/@name").first.value)
-    assert_equal("10fold X-Validation", 
+    assert_equal("10fold X-Validation",
                  doc.find("/components/process/operator/process/operator[2]/@name").first.value)
-    assert_equal("Only Rock examples", 
+    assert_equal("Only Rock examples",
                  doc.find("/components/process/operator/process/operator[2]/process/operator[1]/@name").first.value)
   end
 
   def test_recognized
     # checks if it is correct type with IO and StringIO
-    assert RapidMiner::Parser::recognized?(X_VALIDATION)
-    assert ! RapidMiner::Parser::recognized?(X_VALIDATION_TXT)
+    assert WorkflowParser::RapidMiner::Parser::recognized?(X_VALIDATION)
+    assert ! WorkflowParser::RapidMiner::Parser::recognized?(X_VALIDATION_TXT)
     open(X_VALIDATION) do |file|
-      assert RapidMiner::Parser::recognized?(file)
+      assert WorkflowParser::RapidMiner::Parser::recognized?(file)
     end
     open(X_VALIDATION) do |file|
-      assert RapidMiner::Parser::recognized?(StringIO.new(file.read()))
+      assert WorkflowParser::RapidMiner::Parser::recognized?(StringIO.new(file.read()))
     end
   end
 end

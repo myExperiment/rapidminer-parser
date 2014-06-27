@@ -2,10 +2,11 @@
 
 require "xml/libxml"
 
+module WorkflowParser
 module RapidMiner
   # A RapidMiner output.
   class Output
-  
+
     # The location of the output.
     attr_accessor :location
 
@@ -15,4 +16,5 @@ module RapidMiner
       element
     end
   end
+end
 end

@@ -21,7 +21,7 @@ Or install it yourself as:
 ## Usage
 
     include 'rapidminer/parser
-    wf = RapidMiner::Parser.parse_file("spec/x-validation_with_one-class_svm_636319.zip")
+    wf = WorkflowParser::RapidMiner::Parser.parse_file("spec/x-validation_with_one-class_svm_636319.zip")
 
 
 ## Contributing
